@@ -8,8 +8,8 @@ var card = {
 	x: 300,
 	y: 500,
 	imageSize: {
-		x: 53,
-		y: 91,
+		x: 68,
+		y: 103,
 	}
 };
 card.picture1 = new Image();
