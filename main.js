@@ -4,15 +4,28 @@ var ctx = canvas.getContext("2d");
 
 var canvasColour = "#d1f3ff";
 
-var card = {
+ctx.mozImageSmoothingEnabled = false;
+ctx.webkitImageSmoothingEnabled = false;
+ctx.msImageSmoothingEnabled = false;
+ctx.imageSmoothingEnabled = false;
+
+var cardback = {
 	x: 300,
 	y: 500,
 	imageSize: {
-		x: 53,
-		y: 91,
+		x: 68,
+		y: 103,
 	}
-};
-card.picture1 = new Image();
-card.picture1.src = "./assets/card1.png";
-card.currentPicture = card.picture1;
-setTimeout(function(){ctx.drawImage(card.currentPicture, 0, 0, card.imageSize.x, card.imageSize.y, card.x - card.imageSize.x / 2, card.y - card.imageSize.y / 2, card.imageSize.x, card.imageSize.y);},3000);
+}
+cardback.picture1 = new Image();
+cardback.picture1.src = "./assets/cardback.png";
+cardback.currentPicture = cardback.picture1;
+setTimeout(render,3000);
+function render() {
+	ctx.fillStyle = canvasColour;
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	ctx.drawImage(cardback.currentPicture, 0, 0, cardback.imageSize.x, cardback.imageSize.y, cardback.x - cardback.imageSize.x / 2, cardback.y - cardback.imageSize.y / 2, cardback.imageSize.x, cardback.imageSize.y);
+}
+
+var suits = ["diamonds","hearts","spades","clubs"];
+var values = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
