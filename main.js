@@ -58,7 +58,12 @@ for (i = 0; i < number; i++){
 	for (x = 0; x < players; x++){
 		hands[x].push(shuffleDeck[0]);
 		if (x == 0){
-			ctx.fillStyle = "black";
+			if (shuffleDeck[0].suit == "hearts" || shuffleDeck[0].suit == "diamonds"){
+				ctx.fillStyle = "red";
+			}
+			else{
+				ctx.fillStyle = "black";
+			}
 			ctx.font = "18px Arial";
 			ctx.fillText(""+shuffleDeck[0].value+" of "+shuffleDeck[0].suit, 10, 50+(5*((4*i)+x)));
 		}
@@ -68,10 +73,6 @@ for (i = 0; i < number; i++){
 
 console.log(hands);
 console.log(shuffleDeck);
-
-//ctx.fillStyle = "black";
-//ctx.font = "18px Arial";
-//ctx.fillText(value " of " suit, 10, 50);
 
 function makeCard(suit, value) {
 	this.suit = suit;
