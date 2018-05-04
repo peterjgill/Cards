@@ -28,3 +28,58 @@ function render() {
 
 var suits = ["diamonds","hearts","spades","clubs"];
 var values = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
+var deck = [];
+var shuffleDeck = [];
+var hands = [];
+
+for (var i = 0; i < 4; i++){
+	for (var x = 0; x < 13; x++){
+		var y = new makeCard(suits[i],values[x]);
+		deck.push(y);
+	}
+}
+
+console.log(deck);
+
+for (var i = 0; i < 52; i++){
+	shuffle();
+}
+
+console.log(shuffleDeck);
+
+var players = 0;
+while(players < 2 || players > 8 || players != parseInt(players, 10))
+players = prompt("Please enter number of players between 2 and 8:");
+
+for (var i = 0; i < players; i++){
+	hands.push([]);
+}
+
+var number = Math.floor(shuffleDeck.length/players);
+for (i = 0; i < number; i++){
+	for (x = 0; x < players; x++){
+		hands[x].push(shuffleDeck[0]);
+		shuffleDeck.splice(0,1);
+	}
+}
+
+console.log(hands);
+console.log(shuffleDeck);
+
+function makeCard(suit, value) {
+	this.suit = suit;
+	this.value = value;
+}
+
+function shuffle(){
+	var foo = randomNum(deck.length);
+	shuffleDeck.push(deck[foo]);
+	deck.splice(foo,1);
+}
+
+function randomNum(upper) {
+	var foo = Math.random();
+	foo *= upper;
+	var bar = Math.floor(foo);
+	return bar;
+}
