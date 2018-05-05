@@ -81,7 +81,6 @@ document.addEventListener('keydown', function(event){
 			play.unshift(hands[0][selected]);
 			hands[0].splice(selected,1);
 			time = 1;
-			console.log(time);
 			ai();
 		}
 		render();
@@ -148,7 +147,6 @@ function check(type){
 function aii(){
 	if(who != 0){
 		for(var i = who; i < players; i++){
-			console.log(i);
 			play.push(hands[i][0]);
 			if(i == who){
 				leading.push(hands[i][0]);
@@ -158,34 +156,19 @@ function aii(){
 	}
 }
 function ai() {
-	//if(who != 1){
-	   setTimeout(function() {
-			console.log(time);
-			play.push(hands[time][0]);
-			hands[time].splice(0,1);
-			time++;
-			render();
-			if(time < who || (who == 0 && time < players)) {
-				ai(); 
-			}
-			else{
-				//if(play.length == players){
-					winner();
-				//}
-			}
-		}, 500)
-	//}
-	//else{
-	//	winner();
-	//}
+   setTimeout(function() {
+		play.push(hands[time][0]);
+		hands[time].splice(0,1);
+		time++;
+		render();
+		if(time < who || (who == 0 && time < players)) {
+			ai(); 
+		}
+		else{
+				winner();
+		}
+	}, 500)
 }
-
-/*function ai(){
-	for(var i = 1; i < who; i++){
-		play.push(hands[i][0]);
-		hands[i].splice(0,1);
-	}
-}*/
 
 function render(){
 	ctx.fillStyle = canvasColour;
