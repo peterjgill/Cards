@@ -46,7 +46,7 @@ for (var i = 0; i < 52; i++){
 var players = 0;
 while(players < 2 || players > 7 || players != parseInt(players, 10))
 players = prompt("Please enter number of players between 2 and 7:");
-var who = players;
+var who = 0;
 
 for (var i = 0; i < players; i++){
 	hands.push([]);
@@ -81,6 +81,7 @@ document.addEventListener('keydown', function(event){
 			play.unshift(hands[0][selected]);
 			hands[0].splice(selected,1);
 			time = 1;
+			console.log(time);
 			ai();
 		}
 		render();
@@ -94,7 +95,6 @@ function winner(){
 			trump.push(play[i]);
 		}
 		else if(play[i].suit == leading[0].suit){
-			console.log("hello");
 			first.push(play[i]);
 		}
 	}
@@ -148,6 +148,7 @@ function check(type){
 function aii(){
 	if(who != 0){
 		for(var i = who; i < players; i++){
+			console.log(i);
 			play.push(hands[i][0]);
 			if(i == who){
 				leading.push(hands[i][0]);
@@ -157,20 +158,26 @@ function aii(){
 	}
 }
 function ai() {
-   setTimeout(function() {
-		play.push(hands[time][0]);
-		hands[time].splice(0,1);
-		time++;
-		render();
-		if (time < who) {
-			ai(); 
-		}
-		else{
-			if(play.length == players){
-				winner();
+	//if(who != 1){
+	   setTimeout(function() {
+			console.log(time);
+			play.push(hands[time][0]);
+			hands[time].splice(0,1);
+			time++;
+			render();
+			if(time < who || (who == 0 && time < players)) {
+				ai(); 
 			}
-		}
-	}, 500)
+			else{
+				//if(play.length == players){
+					winner();
+				//}
+			}
+		}, 500)
+	//}
+	//else{
+	//	winner();
+	//}
 }
 
 /*function ai(){
