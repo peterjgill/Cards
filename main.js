@@ -112,7 +112,11 @@ function winner(){
 
 function check(type){
 	for(var i = 0; i < type.length; i++){
-		if(type[i].value == "J" && 11 > highest){
+		if(type[i].value == "10" && 10 > highest){
+			highest = 10;
+			index = i;
+		}
+		else if(type[i].value == "J" && 11 > highest){
 			highest = 11;
 			index = i;
 		}
@@ -139,7 +143,7 @@ function check(type){
 			play = [];
 			trump = [];
 			first = [];
-			highest = [];
+			highest = 0;
 			leading = [];
 			for(x = 0; x < who ; x++){
 				play.push([]);
