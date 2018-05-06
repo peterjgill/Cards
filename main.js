@@ -6,6 +6,7 @@ var index = 8;
 var highest = 0;
 var time = 1;
 var leading = [];
+var aiii = 0;
 
 ctx.mozImageSmoothingEnabled = false;
 ctx.webkitImageSmoothingEnabled = false;
@@ -74,14 +75,18 @@ document.addEventListener('keydown', function(event){
 				selected = hands[0].length-1;
 			}
 		}
-		if(event.keyCode == 13){
+		if(event.keyCode == 13 && (play.length == players || play.length == 0)){
 			if(leading.length == 0){
 				leading.push(hands[0][selected]);
 			}
-			play.unshift(hands[0][selected]);
+			play.splice(0,1,hands[0][selected]);
 			hands[0].splice(selected,1);
 			time = 1;
 			ai();
+		}
+		if(event.keyCode != null && aiii == 1){
+			aiii = 0;
+			aii();
 		}
 		render();
 	}
@@ -133,48 +138,65 @@ function check(type){
 			who = i;
 			play = [];
 			trump = [];
+			first = [];
 			highest = [];
 			leading = [];
-			aii();
+			for(x = 0; x < who ; x++){
+				play.push([]);
+			}
+			console.log(who);
+			time = who;
 			ctx.fillStyle="blue";
 			ctx.fillRect(280, 40+(20*i),10,10);
 			ctx.font = "18px Arial";
 			ctx.fillText("Press any key to continue", 250, 250);
+			aiii = 1;
 		}
 	}
 }
 
 function aii(){
 	if(who != 0){
-		for(var i = who; i < players; i++){
-			play.push(hands[i][0]);
-			if(i == who){
-				leading.push(hands[i][0]);
+		setTimeout(function(){
+			play.push(hands[time][0]);
+			if(time == who){
+				leading.push(hands[time][0]);
 			}
-			hands[i].splice(0,1);
-		}
+			hands[time].splice(0,1);
+			time++;
+			render();
+			if(time < players){
+				aii();
+			}
+		}, 500);
 	}
 }
+
 function ai() {
-   setTimeout(function() {
-		play.push(hands[time][0]);
-		hands[time].splice(0,1);
-		time++;
-		render();
-		if(time < who || (who == 0 && time < players)) {
-			ai(); 
-		}
-		else{
-				winner();
-		}
-	}, 500)
+    if(who != 1){
+		setTimeout(function() {
+			play.splice(time, 1, hands[time][0]);
+			hands[time].splice(0,1);
+			time++;
+			render();
+			if(time < who || (who == 0 && time < players)) {
+				ai(); 
+			}
+			else{
+					winner();
+			}
+		}, 500)
+	}
+	else{
+		winner();
+	}
 }
 
 function render(){
 	ctx.fillStyle = canvasColour;
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 	ctx.fillStyle="blue";
-	ctx.fillRect(10, 40+(5*(4*selected)),10,10);
+	ctx.fillRect(10, 40+(20*selected),10,10);
 	for(var i = 0; i < hands[0].length; i++){
 		if (hands[0][i].suit == "Hearts" || hands[0][i].suit == "Diamonds"){
 			ctx.fillStyle = "red";
@@ -186,14 +208,16 @@ function render(){
 		ctx.fillText(""+hands[0][i].value+" of "+hands[0][i].suit, 30, 50+(20*i));
 	}
 	for(var i = 0; i < play.length; i++){
-		if (play[i].suit == "Hearts" || play[i].suit == "Diamonds"){
-			ctx.fillStyle = "red";
+		if(play[i].suit != undefined){
+			if(play[i].suit == "Hearts" || play[i].suit == "Diamonds"){
+				ctx.fillStyle = "red";
+			}
+			else{
+				ctx.fillStyle = "black";
+			}
+			ctx.font = "18px Arial";
+			ctx.fillText(""+play[i].value+" of "+play[i].suit, 300, 50+(20*i));
 		}
-		else{
-			ctx.fillStyle = "black";
-		}
-		ctx.font = "18px Arial";
-		ctx.fillText(""+play[i].value+" of "+play[i].suit, 300, 50+(20*i));
 	}
 	if (shuffleDeck[0].suit == "Hearts" || shuffleDeck[0].suit == "Diamonds"){
 		ctx.fillStyle = "red";
