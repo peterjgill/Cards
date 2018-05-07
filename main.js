@@ -199,13 +199,13 @@ function aii(){
 	if(who != 0){
 		setTimeout(function(){
 			if(time == who){
-				play.splice(time, 1, hands[time][0]);
-				leading.push(hands[time][0]);
-				hands[time].splice(0,1);
+				x = chooseFirstCard(time);
+				play.splice(time, 1, hands[time][x]);
+				leading.push(hands[time][x]);
+				hands[time].splice(x,1);
 			}
 			else{
 				x = chooseCard(time);
-				//x = 0;
 				play.splice(time, 1, hands[time][x]);
 				hands[time].splice(x,1);
 			}
@@ -221,8 +221,8 @@ function aii(){
 function ai() {
     if(who != 1){
 		setTimeout(function() {
+			console.log(hands[time]);
 			x = chooseCard(time);
-			//x = 0;
 			play.splice(time, 1, hands[time][x]);
 			hands[time].splice(x,1);
 			time++;
@@ -239,27 +239,71 @@ function ai() {
 		winner();
 	}
 }
+
+function chooseFirstCard(hand){
+	for(var i = 0; i < hands[hand].length; i++){
+		if(hands[hand][i].suit != shuffleDeck[0].suit){
+			possibleCard.push(hands[hand][i]);
+		}
+		else{
+			impossibleCard.push(hands[hand][i]);
+		}
+	}
+	if(possibleCard.length != 0){
+		x = checkHighest(possibleCard);
+		for(var i = 0; i < hands[hand].length; i++){
+			if(hands[hand][i] == possibleCard[x]){
+				possibleCard = [];
+				impossibleCard = [];
+				return(i);
+			}
+		}
+	}
+	else{
+		x = checkHighest(impossibleCard);
+		for(var i = 0; i < hands[hand].length; i++){
+			if(hands[hand][i] == impossibleCard[x]){
+				possibleCard = [];
+				impossibleCard = [];
+				return(i);
+			}
+		}
+	}
+}
+
 var imimpossibleCard = [];
 var impossibleCard = [];
 var possibleCard = [];
 function chooseCard(hand){
 	for(var i = 0; i < hands[hand].length; i++){
 		if(hands[hand][i].suit == leading[0].suit){
-			for(var i = 0; i < play.length; i++){
-				if(play[i].suit == leading[0].suit){
-					first.push(play[i]);
+			for(var a = 0; a < play.length; a++){
+				if(play[a].suit == leading[0].suit){
+					first.push(play[a]);
 				}
 			}
 			highest = 0;
 			x = checkHighest(first);
 			highest = 0;
-			if(1 == checkHighest(first[x],hands[hand][i])){
-				possibleCard.push(hands[hand][i]);
+			if(1 == checkHighest([first[x],hands[hand][i]])){
+				for(var a = 0; a < play.length; a++){
+					if(play[a].suit == shuffleDeck[0].suit){
+						imimpossibleCard.push(play[a]);
+					}
+				}
+				if(imimpossibleCard.length == 0){
+					possibleCard.push(hands[hand][i]);	
+				}
+				else{
+					impossibleCard.push(hands[hand][i]);
+				}
 			}
 			else{
 				impossibleCard.push(hands[hand][i]);
 			}
 		}
+		first = [];
+		imimpossibleCard = [];
 	}
 	lowest = 15;
 	if(possibleCard.length != 0){
@@ -285,26 +329,30 @@ function chooseCard(hand){
 	else{
 		for(var i = 0; i < hands[hand].length; i++){
 			if(hands[hand][i].suit == shuffleDeck[0].suit){				
-				for(var i = 0; i < play.length; i++){
-					if(play[i].suit == shuffleDeck[0].suit){
-						trump.push(play[i]);
+				for(var a = 0; a < play.length; a++){
+					if(play[a].suit == shuffleDeck[0].suit){
+						trump.push(play[a]);
 					}
 				}
 				if(trump.length != 0){
 					highest = 0;
 					x = checkHighest(trump);
 					highest = 0;
-					if(1 == checkHighest(trump[x],hands[hand][i])){
+					if(1 == checkHighest([trump[x],hands[hand][i]])){
 						possibleCard.push(hands[hand][i]);
+					}
+					else{
+						imimpossibleCard.push(hands[hand][i]);
 					}
 				}
 				else{
-					impossibleCard.push(hands[hand][i]);
+					possibleCard.push(hands[hand][i]);
 				}
 			}
 			else{
-				imimpossibleCard.push(hands[hand][i]);
+				impossibleCard.push(hands[hand][i]);
 			}
+			trump = [];
 		}
 		if(possibleCard.length != 0){
 			x = checkLowest(possibleCard);
