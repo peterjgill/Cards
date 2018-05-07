@@ -7,7 +7,7 @@ var highest = 0;
 var time = 1;
 var leading = [];
 var aiii = 0;
-
+var lowest = 15;
 ctx.mozImageSmoothingEnabled = false;
 ctx.webkitImageSmoothingEnabled = false;
 ctx.msImageSmoothingEnabled = false;
@@ -110,7 +110,7 @@ function winner(){
 	}
 }
 
-function check(type){
+function checkHighest(type){
 	for(var i = 0; i < type.length; i++){
 		if(type[i].value == "10" && 10 > highest){
 			highest = 10;
@@ -137,6 +137,42 @@ function check(type){
 			index = i;
 		}
 	}
+	return(index);
+}
+
+function checkLowest(type){
+	for(var i = 0; i < type.length; i++){
+		if(type[i].value == "10" && 10 < lowest){
+			lowest = 10;
+			index = i;
+		}
+		else if(type[i].value == "J" && 11 < lowest){
+			lowest = 11;
+			index = i;
+		}
+		else if(type[i].value == "Q" && 12 < lowest){
+			lowest = 12;
+			index = i;
+		}
+		else if(type[i].value == "K" && 13 < lowest){
+			lowest = 13;
+			index = i;
+		}
+		else if(type[i].value == "A" && 14 < lowest){
+			lowest = 14;
+			index = i;
+		}
+		else if(type[i].value < lowest && type[i].value != "10" && type[i].value != "J" && type[i].value != "Q" && type[i].value != "K"){
+			lowest = type[i].value;
+			index = i;
+		}
+	}
+	return(index);
+}
+
+function check(type){
+	highest = 0;
+	index = checkHighest(type);
 	for(var i = 0; i < play.length; i ++){
 		if(type[index] == play[i]){
 			who = i;
@@ -162,11 +198,17 @@ function check(type){
 function aii(){
 	if(who != 0){
 		setTimeout(function(){
-			play.push(hands[time][0]);
 			if(time == who){
+				play.splice(time, 1, hands[time][0]);
 				leading.push(hands[time][0]);
+				hands[time].splice(0,1);
 			}
-			hands[time].splice(0,1);
+			else{
+				x = chooseCard(time);
+				//x = 0;
+				play.splice(time, 1, hands[time][x]);
+				hands[time].splice(x,1);
+			}
 			time++;
 			render();
 			if(time < players){
@@ -179,8 +221,10 @@ function aii(){
 function ai() {
     if(who != 1){
 		setTimeout(function() {
-			play.splice(time, 1, hands[time][0]);
-			hands[time].splice(0,1);
+			x = chooseCard(time);
+			//x = 0;
+			play.splice(time, 1, hands[time][x]);
+			hands[time].splice(x,1);
 			time++;
 			render();
 			if(time < who || (who == 0 && time < players)) {
@@ -195,6 +239,125 @@ function ai() {
 		winner();
 	}
 }
+var imimpossibleCard = [];
+var impossibleCard = [];
+var possibleCard = [];
+function chooseCard(hand){
+	for(var i = 0; i < hands[hand].length; i++){
+		if(hands[hand][i].suit == leading[0].suit){
+			for(var i = 0; i < play.length; i++){
+				if(play[i].suit == leading[0].suit){
+					first.push(play[i]);
+				}
+			}
+			highest = 0;
+			x = checkHighest(first);
+			highest = 0;
+			if(1 == checkHighest(first[x],hands[hand][i])){
+				possibleCard.push(hands[hand][i]);
+			}
+			else{
+				impossibleCard.push(hands[hand][i]);
+			}
+		}
+	}
+	lowest = 15;
+	if(possibleCard.length != 0){
+		x = checkLowest(possibleCard);
+		for (var i = 0; i < hands[hand].length; i++){
+			if(hands[hand][i] == possibleCard[x]){
+				possibleCard = [];
+				impossibleCard = [];
+				return(i);
+			}
+		}
+	}
+	else if(impossibleCard.length != 0){
+		x = checkLowest(impossibleCard);
+		for (var i = 0; i < hands[hand].length; i++){
+			if(hands[hand][i] == impossibleCard[x]){
+				possibleCard = [];
+				impossibleCard = [];
+				return(i);
+			}
+		}
+	}
+	else{
+		for(var i = 0; i < hands[hand].length; i++){
+			if(hands[hand][i].suit == shuffleDeck[0].suit){				
+				for(var i = 0; i < play.length; i++){
+					if(play[i].suit == shuffleDeck[0].suit){
+						trump.push(play[i]);
+					}
+				}
+				if(trump.length != 0){
+					highest = 0;
+					x = checkHighest(trump);
+					highest = 0;
+					if(1 == checkHighest(trump[x],hands[hand][i])){
+						possibleCard.push(hands[hand][i]);
+					}
+				}
+				else{
+					impossibleCard.push(hands[hand][i]);
+				}
+			}
+			else{
+				imimpossibleCard.push(hands[hand][i]);
+			}
+		}
+		if(possibleCard.length != 0){
+			x = checkLowest(possibleCard);
+			for (var i = 0; i < hands[hand].length; i++){
+				if(hands[hand][i] == possibleCard[x]){
+					possibleCard = [];
+					impossibleCard = [];
+					imimpossibleCard = [];
+					return(i);
+				}
+			}
+		}
+		else if(impossibleCard.length != 0){
+			x = checkLowest(impossibleCard);
+			for (var i = 0; i < hands[hand].length; i++){
+				if(hands[hand][i] == impossibleCard[x]){
+					possibleCard = [];
+					impossibleCard = [];
+					imimpossibleCard = [];
+					return(i);
+				}
+			}
+		}
+		else{
+			x = checkLowest(imimpossibleCard);
+			for (var i = 0; i < hands[hand].length; i++){
+				if(hands[hand][i] == imimpossibleCard[x]){
+					possibleCard = [];
+					impossibleCard = [];
+					imimpossibleCard = [];
+					return(i);
+				}
+			}
+		}
+	}
+}
+
+/*
+if(have card in leading suit){
+	if(have card in leading suit that will win){
+		play lowest card in leading suit that will win
+	}else{
+		play lowest card in leading suit
+	}
+}else{
+	if(have card in trump suit){
+		if(have card in trump suit that will win){
+			play lowest card in trump suit that will win
+		}
+	play lowest card
+	}
+}
+*/
 
 function render(){
 	ctx.fillStyle = canvasColour;
