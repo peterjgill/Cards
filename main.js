@@ -77,11 +77,20 @@ document.addEventListener('keydown', function(event){
 		if(event.keyCode == 13 && (play.length == players || play.length == 0)){
 			if(leading.length == 0){
 				leading.push(hands[0][selected]);
+				play.splice(0,1,hands[0][selected]);
+				hands[0].splice(selected,1);
+				time = 1;
+				ai();
 			}
-			play.splice(0,1,hands[0][selected]);
-			hands[0].splice(selected,1);
-			time = 1;
-			ai();
+			else{
+				x = choosePlayerCard();
+				if(x == true){
+					play.splice(0,1,hands[0][selected]);
+					hands[0].splice(selected,1);
+					time = 1;
+					ai();	
+				}
+			}
 		}
 		if(event.keyCode != null && aiii == 1){
 			aiii = 0;
@@ -222,11 +231,11 @@ function aii(){
 function ai() {
     if(who != 1){
 		setTimeout(function() {
-			console.log(hands[time]);
 			x = chooseCard(time);
 			play.splice(time, 1, hands[time][x]);
 			hands[time].splice(x,1);
 			time++;
+			console.log(play);
 			render();
 			if(time < who || (who == 0 && time < players)) {
 				ai(); 
@@ -239,6 +248,28 @@ function ai() {
 	else{
 		winner();
 	}
+}
+
+function choosePlayerCard(){
+	if(hands[0][selected].suit == leading[0].suit){
+		return(true);
+	}
+	else{
+		for(var i = 0; i < hands[0].length; i++){
+			if(hands[0][i].suit == leading[0].suit){
+				possibleCard.push(hands[0][i]);
+			}
+		}
+		if(possibleCard.length == 0){
+			possibleCard = [];
+			return(true);
+		}
+		else{
+			possibleCard = [];
+			return(false);
+		}
+	}
+	
 }
 
 function chooseFirstCard(hand){
