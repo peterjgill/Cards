@@ -8,6 +8,8 @@ var time = 1;
 var leading = [];
 var aiii = 0;
 var lowest = 15;
+var selected = 0;
+
 ctx.mozImageSmoothingEnabled = false;
 ctx.webkitImageSmoothingEnabled = false;
 ctx.msImageSmoothingEnabled = false;
@@ -24,8 +26,6 @@ var cardback = {
 cardback.picture1 = new Image();
 cardback.picture1.src = "./assets/cardback.png";
 cardback.currentPicture = cardback.picture1;
-
-ctx.drawImage(cardback.currentPicture, 0, 0, cardback.imageSize.x, cardback.imageSize.y, cardback.x - cardback.imageSize.x / 2, cardback.y - cardback.imageSize.y / 2, cardback.imageSize.x, cardback.imageSize.y);
 
 var suits = ["Diamonds","Hearts","Spades","Clubs"];
 var values = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"];
@@ -61,7 +61,6 @@ for (i = 0; i < 7; i++){
 }
 render();
 
-var selected = 0;
 document.addEventListener('keydown', function(event){
 		if(event.keyCode == 40){
 			selected++;
@@ -171,28 +170,30 @@ function checkLowest(type){
 }
 
 function check(type){
-	highest = 0;
-	index = checkHighest(type);
-	for(var i = 0; i < play.length; i ++){
-		if(type[index] == play[i]){
-			who = i;
-			play = [];
-			trump = [];
-			first = [];
-			highest = 0;
-			leading = [];
-			for(x = 0; x < who ; x++){
-				play.push([]);
+	setTimeout(function(){
+		highest = 0;
+		index = checkHighest(type);
+		for(var i = 0; i < play.length; i ++){
+			if(type[index] == play[i]){
+				who = i;
+				play = [];
+				trump = [];
+				first = [];
+				highest = 0;
+				leading = [];
+				for(x = 0; x < who ; x++){
+					play.push([]);
+				}
+				console.log(who);
+				time = who;
+				ctx.fillStyle="blue";
+				ctx.fillRect(280, 40+(20*i),10,10);
+				ctx.font = "18px Arial";
+				ctx.fillText("Press any key to continue", 250, 250);
+				aiii = 1;
 			}
-			console.log(who);
-			time = who;
-			ctx.fillStyle="blue";
-			ctx.fillRect(280, 40+(20*i),10,10);
-			ctx.font = "18px Arial";
-			ctx.fillText("Press any key to continue", 250, 250);
-			aiii = 1;
 		}
-	}
+	},500);
 }
 
 function aii(){
@@ -389,23 +390,6 @@ function chooseCard(hand){
 		}
 	}
 }
-
-/*
-if(have card in leading suit){
-	if(have card in leading suit that will win){
-		play lowest card in leading suit that will win
-	}else{
-		play lowest card in leading suit
-	}
-}else{
-	if(have card in trump suit){
-		if(have card in trump suit that will win){
-			play lowest card in trump suit that will win
-		}
-	play lowest card
-	}
-}
-*/
 
 function render(){
 	ctx.fillStyle = canvasColour;
