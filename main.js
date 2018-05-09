@@ -70,7 +70,7 @@ document.addEventListener('keydown', function(event){
 				selected = hands[0].length-1;
 			}
 		}
-		if(event.keyCode == 13 && enter == 1 &&(play.length == players || play.length == 0)){
+		if(event.keyCode == 13 && enter == 1 && selected < hands[0].length &&(play.length == players || play.length == 0)){
 			console.log(players);
 			if(leading.length == 0){
 				enter = 0;
