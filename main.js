@@ -71,9 +71,9 @@ document.addEventListener('keydown', function(event){
 			}
 		}
 		if(event.keyCode == 13 && enter == 1 &&(play.length == players || play.length == 0)){
-			enter = 0;
 			console.log(players);
 			if(leading.length == 0){
+				enter = 0;
 				leading.push(hands[0][selected]);
 				play.splice(0,1,hands[0][selected]);
 				hands[0].splice(selected,1);
@@ -83,6 +83,7 @@ document.addEventListener('keydown', function(event){
 			else{
 				x = choosePlayerCard();
 				if(x == true){
+					enter = 0;
 					play.splice(0,1,hands[0][selected]);
 					hands[0].splice(selected,1);
 					time = 1;
@@ -242,7 +243,7 @@ function round(){
 	}
 	else{
 		players = imimpossibleCard.length + 1;
-		if(players == 0){
+		if(players == 1){
 			possible = 1;
 			ctx.fillStyle = "black";
 			ctx.fillRect(0, 0, canvas.width, canvas.height);
