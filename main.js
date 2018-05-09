@@ -242,12 +242,21 @@ function round(){
 	}
 	else{
 		players = imimpossibleCard.length + 1;
+		if(players == 0){
+			possible = 1;
+			ctx.fillStyle = "black";
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			ctx.fillStyle = "white";
+			ctx.font = "72px Arial";
+			ctx.fillText("You Win!", 100, 300);
+		}
 		imimpossibleCard = [];
 		possibleCard = [];
 		roundNumber++;
 		enter = 1;
 		play = [];
 		winners = [];
+		who = 0;
 		makeDeck();
 	}
 }
