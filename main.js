@@ -18,6 +18,11 @@ var shuffleDeck = [];
 var hands = [];
 var roundNumber = 0;
 var enter = 1;
+var roundi = 0;
+var trumpSuit = "";
+var possibleTrumpSuit = [[],[],[],[]];
+var atrumpSuit = [];
+var noTrump = 0;
 
 ctx.mozImageSmoothingEnabled = false;
 ctx.webkitImageSmoothingEnabled = false;
@@ -54,6 +59,55 @@ function makeDeck(){
 			shuffleDeck.splice(0,1);
 		}
 	}
+	if(roundNumber == 0){
+		trumpSuit = shuffleDeck[0].suit;
+	}
+	else if(who == 0 && possible == 0){
+		setTimeout(function(){
+			trumpSuit = "";
+			while(trumpSuit != "Clubs" && trumpSuit != "Diamonds" && trumpSuit != "Hearts" && trumpSuit != "Spades")
+			trumpSuit = prompt("Please choose trump suit:");
+			noTrump = 0;
+			render();
+			},500);
+	}
+	else{
+		for(var i = 0; i < hands[who].length; i++){
+			if(hands[who][i].suit == "Clubs"){
+				possibleTrumpSuit[0].push(hands[who][i]);
+			}
+			else if(hands[who][i].suit == "Diamonds"){
+				possibleTrumpSuit[1].push(hands[who][i]);
+			}
+			else if(hands[who][i].suit == "Hearts"){
+				possibleTrumpSuit[2].push(hands[who][i]);
+			}
+			else{
+				possibleTrumpSuit[3].push(hands[who][i]);
+			}
+		}
+		for(var i = 0; i < 4; i++){
+			if(possibleTrumpSuit[i].length >= atrumpSuit.length+1){
+				if(i == 0){
+					trumpSuit = "Clubs";
+					atrumpSuit = possibleTrumpSuit[i];
+				}
+				if(i == 1){
+					trumpSuit = "Diamonds";
+					atrumpSuit = possibleTrumpSuit[i];
+				}
+				if(i == 2){
+					trumpSuit = "Hearts";
+					atrumpSuit = possibleTrumpSuit[i];
+				}
+				if(i == 3){
+					trumpSuit = "Spades";
+					atrumpSuit = possibleTrumpSuit[i];
+				}
+			}
+		}
+		noTrump = 0;
+	}
 	render();
 }
 
@@ -71,7 +125,6 @@ document.addEventListener('keydown', function(event){
 			}
 		}
 		if(event.keyCode == 13 && enter == 1 && selected < hands[0].length &&(play.length == players || play.length == 0)){
-			console.log(players);
 			if(leading.length == 0){
 				enter = 0;
 				leading.push(hands[0][selected]);
@@ -95,6 +148,10 @@ document.addEventListener('keydown', function(event){
 			aiii = 0;
 			aii();
 		}
+		if(event.keyCode != null && roundi == 1){
+			roundi = 0;
+			round();
+		}
 		render();
 	}
 );
@@ -103,7 +160,7 @@ var first = [];
 var trump = [];
 function winner(){
 	for(var i = 0; i < play.length; i++){
-		if(play[i].suit == shuffleDeck[0].suit){
+		if(play[i].suit == trumpSuit){
 			trump.push(play[i]);
 		}
 		else if(play[i].suit == leading[0].suit){
@@ -199,9 +256,8 @@ function check(type){
 				ctx.fillRect(280, 40+(20*i),10,10);
 				ctx.font = "18px Arial";
 				ctx.fillText("Press any key to continue", 250, 250);
-				console.log(winners);
 				if(winners.length == 7 - roundNumber){
-					round();
+					roundi = 1;
 				}
 				else{
 					aiii = 1;
@@ -211,26 +267,44 @@ function check(type){
 	},500);
 }
 
+var roundWinner = [[],[],[],[],[],[],[]];
+var rW = [];
+var pRW = [];
 function round(){
 	for(var i = 0; i < winners.length; i++){
-		if(winners[i] == 0){
-			possibleCard.push(winners[i]);
-			console.log("p "+possibleCard);
+		for(var x = 0; x < players; x++){
+			if(winners[i] == 0){
+				possibleCard.push(winners[i]);
+			}
+			if(winners[i] == x){
+				roundWinner[x].push(winners[i]);
+			}
+			console.log(roundWinner);
 		}
-		else{
-			console.log(winners[i]);
+		if(winners[i] != 0){
 			for(var x = 0; x < imimpossibleCard.length; x++){
 				if(winners[i] == imimpossibleCard[x]){
 					impossibleCard.push(winners[i]);
-					console.log("im "+impossibleCard);
 				}
 			}
 			if(impossibleCard.length == 0){
 				imimpossibleCard.push(winners[i]);
-				console.log("imim "+imimpossibleCard);
 			}
 			impossibleCard = [];
-			console.log("im "+impossibleCard);
+		}
+		for(var x = 0; x < 7; x++){
+			if(roundWinner[x].length >= rW.length+1){
+				rW = roundWinner[x];
+			}
+		}
+	}
+	pRW = rW[0];
+	for(var x = 0; x < 7; x++){
+		console.log(roundWinner[x].length);
+		console.log(x);
+		console.log(pRW);
+		if(roundWinner[x].length == 0 && x < pRW){
+			rW[0]--;
 		}
 	}
 	if(possibleCard.length == 0){
@@ -254,11 +328,18 @@ function round(){
 		imimpossibleCard = [];
 		possibleCard = [];
 		roundNumber++;
-		enter = 1;
 		play = [];
 		winners = [];
-		who = 0;
+		who = rW[0];
+		time = rW[0];
+		roundWinner = [[],[],[],[],[],[],[]];
+		rW = [];
+		noTrump = 1;
+		for(var x = 0; x < who ; x++){
+			play.push([]);
+		}
 		makeDeck();
+		aii();
 	}
 }
 
@@ -336,7 +417,7 @@ function choosePlayerCard(){
 
 function chooseFirstCard(hand){
 	for(var i = 0; i < hands[hand].length; i++){
-		if(hands[hand][i].suit != shuffleDeck[0].suit){
+		if(hands[hand][i].suit != trumpSuit){
 			possibleCard.push(hands[hand][i]);
 		}
 		else{
@@ -381,7 +462,7 @@ function chooseCard(hand){
 			highest = 0;
 			if(1 == checkHighest([first[x],hands[hand][i]])){
 				for(var a = 0; a < play.length; a++){
-					if(play[a].suit == shuffleDeck[0].suit){
+					if(play[a].suit == trumpSuit){
 						imimpossibleCard.push(play[a]);
 					}
 				}
@@ -422,9 +503,9 @@ function chooseCard(hand){
 	}
 	else{
 		for(var i = 0; i < hands[hand].length; i++){
-			if(hands[hand][i].suit == shuffleDeck[0].suit){				
+			if(hands[hand][i].suit == trumpSuit){				
 				for(var a = 0; a < play.length; a++){
-					if(play[a].suit == shuffleDeck[0].suit){
+					if(play[a].suit == trumpSuit){
 						trump.push(play[a]);
 					}
 				}
@@ -512,15 +593,17 @@ function render(){
 				ctx.fillText(""+play[i].value+" of "+play[i].suit, 300, 50+(20*i));
 			}
 		}
-		if (shuffleDeck[0].suit == "Hearts" || shuffleDeck[0].suit == "Diamonds"){
-			ctx.fillStyle = "red";
+		if(noTrump == 0){
+			if(trumpSuit == "Hearts" || trumpSuit == "Diamonds"){
+				ctx.fillStyle = "red";
+			}
+			else{
+				ctx.fillStyle = "black";
+			}
+			ctx.font = "18px Arial";
+			ctx.fillText("Trump suit:", 30, 550);
+			ctx.fillText(""+trumpSuit, 30, 570);
 		}
-		else{
-			ctx.fillStyle = "black";
-		}
-		ctx.font = "18px Arial";
-		ctx.fillText("Trump suit:", 30, 550);
-		ctx.fillText(""+shuffleDeck[0].suit, 30, 570);
 	}
 }
 
