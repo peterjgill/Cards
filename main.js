@@ -279,7 +279,6 @@ function round(){
 			if(winners[i] == x){
 				roundWinner[x].push(winners[i]);
 			}
-			console.log(roundWinner);
 		}
 		if(winners[i] != 0){
 			for(var x = 0; x < imimpossibleCard.length; x++){
@@ -292,17 +291,15 @@ function round(){
 			}
 			impossibleCard = [];
 		}
+		rW = []
 		for(var x = 0; x < 7; x++){
-			if(roundWinner[x].length >= rW.length+1){
+			if(roundWinner[x].length > rW.length){
 				rW = roundWinner[x];
 			}
 		}
 	}
 	pRW = rW[0];
 	for(var x = 0; x < 7; x++){
-		console.log(roundWinner[x].length);
-		console.log(x);
-		console.log(pRW);
 		if(roundWinner[x].length == 0 && x < pRW){
 			rW[0]--;
 		}
