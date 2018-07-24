@@ -51,7 +51,7 @@ var questions = [
 		/*48*/"Infrared radiation is emitted by...",
 		/*49*/"More infrared radiation is emitted by objects that are...",
 		/*50*/"The factors that affect the rate at which an object heats are...",
-		/*51*/"The bigger the temperature difference between an object and it's surroundings...",
+		/*51*/"The bigger the temperature difference between an object and its surroundings...",
 		/*52*/"A perfect black body is an object that...",
 		/*53*/"A good absorber is a...",
 		/*54*/"A good emitter is a...",
@@ -484,12 +484,12 @@ var answers = [
 		/*33*/"T2/V2",
 		/*34*/"T2/P2",
 		/*35*/"net force at right angles to the walls of the container",
-		/*36*/"increase it's temperature",
+		/*36*/"increase its temperature",
 		/*37*/"kinetic energy is transferred to the particles so the average kinetic energy increases",
-		/*38*/"The pressure of a gas at constant temperature is inversely proportional to it's volume",
-		/*39*/"The volume of a gas at constant pressure is directly proportional to it's temperature(K)",
+		/*38*/"The pressure of a gas at constant temperature is inversely proportional to its volume",
+		/*39*/"The volume of a gas at constant pressure is directly proportional to its temperature(K)",
 		/*40*/"the higher the rate of transfer by conduction across the material",
-		/*41*/"thickness and thermal conductivity of it's walls",
+		/*41*/"thickness and thermal conductivity of its walls",
 		/*42*/"when particles collide the slower energy is transferred (usually) from the faster one to the slower one",
 		/*43*/"the hotter particles move faster and volume is proprtional to temperature so they take up more space with the same mass so the density is lower so the hotter particles rise",
 		/*44*/"the hotter particles have enough energy to leave the object as a gas (evaporation) leaving the cooler particles behind",
@@ -505,7 +505,7 @@ var answers = [
 		/*54*/"good absorber",
 		/*55*/"perfect black body",
 		/*56*/"temperature of the object",
-		/*57*/"intensity and wavelength distribution of it's emission",
+		/*57*/"intensity and wavelength distribution of its emission",
 		/*58*/"at the same rate than it is emitting radiation",
 		/*59*/"at a faster rate than it is emitting radiation",
 		/*60*/"absorption, emission and reflection",
@@ -927,9 +927,13 @@ document.getElementById("enter").onclick = function(){
 };
 
 document.getElementById("idontknow").onclick = function(){
-	if(document.getElementById("idontknow").innerHTML == ("I don't know")){
+	if(document.getElementById("idontknow").innerHTML == ("I don't know") && document.getElementById("answer").value != ""){
 		document.getElementById("dontknow").innerHTML = answers[random][random2];
 		document.getElementById("idontknow").innerHTML = "I was right";
+	}else if(document.getElementById("answer").value == ""){
+		incorrect++;
+		document.getElementById("incorrect").innerHTML = "incorrect: " + incorrect;
+		document.getElementById("dontknow").innerHTML = answers[random][random2];
 	}else{
 		incorrect--;
 		document.getElementById("incorrect").innerHTML = "incorrect: " + incorrect;
