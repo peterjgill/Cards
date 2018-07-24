@@ -879,7 +879,7 @@ var answers = [
 		/*16*/"fill with sap and keep the cell enlarged",
 		/*17*/"strengthen the cell",
 		/*18*/"the same as animal cells, chloroplast, a vacuole, a cell wall",
-		/*19*/"having a tail to help it move and lots of mitochondria to supply the enery to find the egg",
+		/*19*/"having a tail to help it move and lots of mitochondria for energy",
 		/*20*/"being small, having lots of haemoglobing to carry oxygen, not having a nucleus or mitochondria and little cytoplasm to carry lots of oxygen",
 		/*21*/"having long fibres to carry impulses to/from the brain, has long dendrites to make connections with other neurons",
 		/*22*/"containing mitochondria and store glycogen for energy",
