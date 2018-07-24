@@ -159,7 +159,7 @@ var questions = [
 		/*17*/"Bond length is the...",
 		/*18*/"In metres, atomic radius is around...",
 		/*19*/"In the most suitable unit, atomic radius is around...",
-		/*20*/"<super>z</super>X is the...",
+		/*20*/"<sup>z</sup>X is the...",
 		/*21*/"<sub>z</sub>X is the...",
 		/*22*/"The mass number is the number of...",
 		/*23*/"The atomic number is the number of...",
