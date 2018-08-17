@@ -4,13 +4,25 @@
 	<title>Revision Questions</title>
 </head>
 <body>
+	<p id="perfect" style="display: inline;">Perfect: 0</p>
+	<p id="correct" style="display: inline; margin-left: 100px;">Correct: 0</p>
+	<p id="incorrect" style="display: inline; margin-left: 100px;">Incorrect: 0</p><br><br>
 	<p id="question" style="display: inline;"></p>
 	<input type="text" id="answer" style="display: inline; margin-left: 5px;"></input>
 	<button type="button" id="enter" style="display: inline;">submit</button>
 	<button type="button" id="idontknow" style="display: inline;">I don't know</button><br><br>
-	<p id="correct" style="display: inline;">correct: 0</p>
-	<p id="incorrect" style="display: inline; margin-left: 100px;">incorrect: 0</p><br><br>
 	<p id="dontknow" style="display: inline;"></p>
+	<br><br>
+	Subject: <select id="subject">
+		<option value="all">All</option>
+		<option value="0">Physics</option>
+		<option value="1">Geography</option>
+		<option value="2">English</option>
+		<option value="3">Biology</option>
+		<option value="4">Chemistry</option>
+		<option value="5">Computing</option>
+		<option value="6">Spanish</option>
+	</select>
 	<script src="quiz.js"></script>
 </body>
 </html>

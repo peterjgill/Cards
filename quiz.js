@@ -378,7 +378,7 @@ var questions = [
 		/*375*/"The area under a v/t graph is...",
 		/*376*/"Final velocity symbol:",
 		/*377*/"Initial velocity symbol:",
-		/*378*/"v<sup>2</sup> - u<sup>2</sup> =",
+		/*478*/"Air bags and other safety features like them work because...",
 		/*379*/"Gravitation field strength on Earth is...",
 		/*380*/"An object falling near Earth's surface has an acceleration of...",
 		/*381*/"An object falling will eventually...",
@@ -400,9 +400,15 @@ var questions = [
 		/*397*/"If the braking force is too big...",
 		/*398*/"momentuum symbol:",
 		/*399*/"momentuum unit:",
-		/*400*/"p (momentum) =",
+		/*400*/"p =",
 		/*401*/"In a closed system, the momentum after an event...",
 		/*402*/"In terms of momentum, F =",
+		/*403*/"SUVAT: (s)",
+		/*404*/"SUVAT: (v)",
+		/*405*/"SUVAT: (a)",
+		/*406*/"SUVAT: (t)",
+		/*407*/"SUVAT: (u)",
+		/*408*/"E<sub>k</sub> in braking =",
 	],
 	[ /*geography*//*1*/
 		/*0*/"Weather cells in order from the equator:",
@@ -663,6 +669,18 @@ var questions = [
 		/*253*/"Impacts (health) of the Eyjafjallaj&#1255;kull eruption include...",
 		/*254*/"Impacts (glaciers) of the Eyjafjallaj&#1255;kull eruption include...",
 		/*255*/"Impacts (mail) of the Eyjafjallaj&#1255;kull eruption include...",
+		/*256*/"Iceland's methods of monitoring volcanoes include...",
+		/*257*/"Information about volcanos in Iceland is coordinated by...",
+		/*258*/"The public are made aware of the risk of volcanoes in iceland by...",
+		/*259*/"Recovery and response in Iceland in coordinated by...",
+		/*260*/"The National Emergency Agency in Iceland...",
+		/*261*/"In 2014 another volcano erupted in Iceland which was...",
+		/*262*/"The 2014 Iceland volcano eruption...",
+		/*263*/"Technology has a greater affect at reducing the impacts of a disaster in...",
+		/*264*/"The impact of a disaster depends on...",
+		/*265*/"Mitigate means...",
+		/*266*/"The decision to mitigate against a hazard is based on...",
+		/*267*/"Although earthquakes are very difficult to predict there are four methods that can help, these are...",
 	],
 	[ /*english*//*2*/
 		/*0*/'Exposure: "Slowly our ghosts drag home: glimpsing the sunk fires, glozed"',
@@ -711,7 +729,7 @@ var questions = [
 		/*43*/'My Last Duchess: "She had A heart -"',
 		/*44*/'My Last Duchess: "I gave commands; Then all smiles stopped together"',
 		/*45*/'Exposure is by...',
-		/*46*/'Poppies is by..."',
+		/*46*/'Poppies is by...',
 	],
 	[ /*biology*//*3*/
 		/*0*/"Plant and animal cells are called...",
@@ -1369,15 +1387,15 @@ var questions = [
 		/*359*/"Calcium hydroxide precipitate test:",
 		/*360*/"Zinc hydroxide precipitate test:",
 		/*361*/"To distinguish between calcium and zinc in a hydroxide precipitate is to...",
-		/*362*/"The test for sulpate is...||a white precipitate forms when you add dilute hydrochloric acid and barium chloride",
-		/*363*/"The test for carbonate is...||carbon dioxide (test with limewater) bubbles will be produced when you add dilute hydrochloric acid",
-		/*364*/"The test for halide ions is...||a precipitate forms when you add dilute nitric acid and silver nitrate solution, the colour tells you if it is chloride (white), bromide (cream) or iodide (yellow)",
-		/*365*/"The test for halide ions does not work for...||fluoride because it is soluble in water so it does not form a precipitate",
-		/*366*/"An instrumental method of analysis is...||any way of identifying a substance that relies on a machine",
-		/*367*/"Advantages of instrumental methods of analysis include...||they are very sensetive so need very small amounts, very accurate, very fast, can run all the time",
-		/*368*/"A mass spectrometer...||measures the mass of atoms and molecules",
-		/*369*/"Mass spectrometers are used for...||analysing the relative amounts of different isotopes of an element and the structure of molecules",
-		/*370*/"Mass spectrometers analyse molecules by...||ionising them to form molecular ions, these may break up to form fragments which the machine can separate and detect",
+		/*362*/"The test for sulpate is...",
+		/*363*/"The test for carbonate is...",
+		/*364*/"The test for halide ions is...",
+		/*365*/"The test for halide ions does not work for...",
+		/*366*/"An instrumental method of analysis is...",
+		/*367*/"Advantages of instrumental methods of analysis include...",
+		/*368*/"A mass spectrometer...",
+		/*369*/"Mass spectrometers are used for...",
+		/*370*/"Mass spectrometers analyse molecules by...",
 	],
 	[ /*computing*//*5*/
 		/*0*/"CPU stands for...",
@@ -1630,7 +1648,7 @@ var questions = [
 		/*246*/"An overflow error is...",
 		/*247*/"Left shift and right shift are...",
 		/*248*/"Metadata is...",
-		/*249*/"Black and white images can be represented as (;:)...",
+		/*249*/"Black and white bitmap images can be represented as (;:)...",
 		/*250*/"For a computer to store music, it must first...",
 		/*251*/"When sound is recorded...",
 		/*252*/"The sampling rate for recording sound is measured in...",
@@ -1660,6 +1678,14 @@ var questions = [
 		/*276*/"A two dimentional array is declared as...",
 		/*277*/"A dynamic array is declared as...",
 		/*278*/"A dynamic array is...",
+		/*279*/"A database is...",
+		/*280*/"A table (in a database) is...",
+		/*281*/"Validation is...",
+		/*282*/"Verification is...",
+		/*283*/"Two examples of verification are...",
+		/*284*/"Verification can...",
+		/*285*/"A checksum is...",
+		/*286*/"A bitmap image is...",
 	],
 	[ /*spanish*//*6*/
 		/*0*/"Vivo en el",
@@ -3103,6 +3129,72 @@ var questions = [
 		/*1439*/"Me llevo bien con mis compa&#241;eros",
 		/*1440*/"Mi jefe/a es amable",
 		/*1441*/"El horario es flexible",
+		
+		/*1442*/"prácticas laborales",
+		/*1443*/"Hice mis prácticas laborales en...",
+		/*1444*/"Pasé una quincena trabajando en...",
+		/*1445*/"una agencia de viajes / una granja",
+		/*1446*/"una escuela / una oficina",
+		/*1447*/"una fábrica de juguetes",
+		/*1448*/"una tienda benéfica",
+		/*1449*/"una tienda solidaria",
+		/*1450*/"la empresa de mi madre",
+		/*1451*/"El último día conocí...",
+		/*1452*/"archivaba documentos",
+		/*1453*/"ayudaba...",
+		/*1454*/"cogía el autobús",
+		/*1455*/"empezaba a las...",
+		/*1456*/"terminaba a las...",
+		/*1457*/"hacía una variedad de tareas",
+		/*1458*/"iba en transporte público",
+		/*1459*/"llevaba ropa elegante",
+		/*1460*/"ponía folletos en los estantes",
+		/*1461*/"sacaba fotocopias",
+		/*1462*/"Los clientes eran...",
+		/*1463*/"alegre(s)",
+		/*1464*/"(des)agradable(s)",
+		/*1465*/"(mal) educado/a(s)",
+		/*1466*/"El trabajo era duro",
+		/*1467*/"muchas nuevas habilidades",
+		/*1468*/"a trabajar en equipo",
+		/*1469*/"a usar...",
+		/*1470*/"No aprendí nada nuevo",
+		/*1471*/"¿Por qué aprender idiomas?",
+		/*1472*/"Aumenta tu confianza",
+		/*1473*/"Estimula el cerebro",
+		/*1474*/"Mejora tus perspectivas laborales",
+		/*1475*/"Te abre la mente",
+		/*1476*/"Te hace parecer más atractivo",
+		/*1477*/"apreciar la vida cultural de otros",
+		/*1478*/"países",
+		/*1479*/"conocer a mucha gente distinta",
+		/*1480*/"conocer nuevos sitios",
+		/*1481*/"encontrar un trabajo",
+		/*1482*/"descubrir nuevas culturas",
+		/*1483*/"establecer buenas relaciones",
+		/*1484*/"hacer nuevos amigos",
+		/*1485*/"mejorar tu lengua materna",
+		/*1486*/"solucionar problemas",
+		/*1487*/"trabajar o estudiar en el extranjero",
+		/*1488*/"Me hace falta saber hablar...",
+		/*1489*/"idiomas extranjeros",
+		/*1490*/"(No) Domino el inglés",
+		/*1491*/"Hablo un poco de ruso",
+		/*1492*/"Solicitando un trabajo",
+		/*1493*/"Se busca / Se requiere...",
+		/*1494*/"(No) Hace falta experiencia",
+		/*1495*/"Muy señor mío",
+		/*1496*/"Le escribo para solicitar el puesto de...",
+		/*1497*/"Le adjunto mi currículum vitae",
+		/*1498*/"Le agradezco su amable atención",
+		/*1499*/"Atentamente",
+		/*1500*/"Me apetece trabajar en...",
+		/*1501*/"(No) Tengo experiencia previa",
+		/*1502*/"He estudiado / trabajado...",
+		/*1503*/"He hecho un curso de...",
+		/*1504*/"buenas capacidades de comunicación",
+		/*1505*/"buenas capacidades de resolución de problemas",
+		/*1506*/"buenas habilidades lingüísticas",
 	],
 ];
 
@@ -3461,7 +3553,7 @@ var answers = [
 		/*350*/"N",
 		/*351*/"s",
 		/*352*/"m",
-		/*353*/"Fs",
+		/*353*/"Fd",
 		/*354*/"a foce if 1N causes a displacement of 1m",
 		/*355*/"J",
 		/*356*/"energy tranferred",
@@ -3486,7 +3578,7 @@ var answers = [
 		/*375*/"displacement",
 		/*376*/"v",
 		/*377*/"u",
-		/*378*/"2as",
+		/*378*/"they do not change the initial or final velocity but they do increase the stopping distance so the deceleration is smaller and the danger comes from the force which is greater with a greater acceleration",
 		/*379*/"9.8N/kg",
 		/*380*/"9.8m/s2",
 		/*381*/"reach its terminal velocity where it has a reultant force of 0 so it stops accelerating",
@@ -3511,6 +3603,12 @@ var answers = [
 		/*400*/"mv",
 		/*401*/"is equal to the momentum before the event",
 		/*402*/"Dp/t (force = rate of change of momentum)",
+		/*403*/"v = u+at",
+		/*404*/"s = ut+1/2at2",
+		/*405*/"s = 1/2(u+v)t",
+		/*406*/"v2 = u2+2as",
+		/*407*/"s = vt-1/2at2",
+		/*408*/"braking force x braking distance",
 	],
 	[ /*geography*//*1*/
 		/*0*/"Hadley, Ferrel, Polar",
@@ -3771,6 +3869,18 @@ var answers = [
 		/*253*/"respiratory problems for humans and animals that breathed in too much ash",
 		/*254*/"for months glaciers were covered in ash which was not good for climate change",
 		/*255*/"mail could not be sent by plane",
+		/*256*/"satellite imagery, thermal cameras, gas chromatography, seismometers, tiltmeters and computer modelling",
+		/*257*/"the Iceland Met Office (IMO)",
+		/*258*/"local text message warning systems, radio, television and internet",
+		/*259*/"the National Emergency Agency",
+		/*260*/"replace bridges immediately with temporary pre-built structures, dredge blocked rivers, clear away tonnes of ash (now sold to tourists)",
+		/*261*/"heavily monitored by the IMO with gas emissions made public, helicopters tracking ash and lava flow, predictions made about any possible explosive eruptions",
+		/*262*/"remained a small fissure eruption and had no direct impact on humans although the lava flow reached the size of Manhattan",
+		/*263*/"ACs",
+		/*264*/"the conditions before the event, the warning, the system for disaster relief",
+		/*265*/"reduce the impact",
+		/*266*/"an analysis of the risks, costs and benfits",
+		/*267*/"radon gas (a radioactive isotope) might be released by seismic stress before rock fractures, passing electromagnetic waves through rocks might detect fractures devolping, historic trends, animal behaviour shows clear signs that something is wrong",
 	],
 	[ /*english*//*2*/
 		/*0*/"1 Slowly melting. I was brave, as I walked",
@@ -4406,8 +4516,8 @@ var answers = [
 		/*288*/"electrodes than do not change during electrolysis made from graphite or unreactive metals such as copper or platinum",
 		/*289*/"cathode: 4H+ + 4e- -> 2H2 and anode: 4OH- -> 2H2O + O2 + 4e-",
 		/*290*/"the cation at the cathode and the anion at the anode with no charge and the same ratio as they started with",
-		/*291*/"if the positive ions are more reactive than hydrogen then hydrogen but if they are less reactive then the metal",
-		/*292*/"if the negative ions are not from group 7 then oxygen but if they are then the element",
+		/*291*/"if the positive ions are more reactive than hydrogen then hydrogen otherwise the metal",
+		/*292*/"if the negative ions are not from group 7 then oxygen otherwise the element",
 		/*293*/"electroplating",
 		/*294*/"the object you want to coat (like jewellery)",
 		/*295*/"the metal you want to coat the object with (like silver)",
@@ -4768,6 +4878,14 @@ var answers = [
 		/*276*/"array name[columns,rows] then name[column,row] = value",
 		/*277*/"array name[] then name.append(value)",
 		/*278*/"an array where the length can change",
+		/*279*/"a file consisting of one or more data tables",
+		/*280*/"made up of rows (records) and columns (fields)",
+		/*281*/"makeing sure if the user enters information in the wrong format it does not cause an error",
+		/*282*/"checking that the data entered is correct",
+		/*283*/"double keying (entering the data twice) and proofreading",
+		/*284*/"improve the chance of data being correct but you can never be certain",
+		/*285*/"in the footer of a packet containg data that can be used to check if interferance has occured",
+		/*286*/"an image where the data is saved as the colour of each pixel",
 	],
 	[ /*spanish*//*6*/
 		/*0*/"I live in the",
@@ -6211,9 +6329,75 @@ var answers = [
 		/*1439*/"I get on well with my colleagues",
 		/*1440*/"my boss is nice",
 		/*1441*/"the hours are flexible",
+		/*1442*/"work experience",
+		/*1443*/"I did my work experience in...",
+		/*1444*/"I spent a fortnight working in...",
+		/*1445*/"a travel agency / a farm",
+		/*1446*/"a school / an office",
+		/*1447*/"a toy factory",
+		/*1448*/"a charity shop",
+		/*1449*/"a charity shop",
+		/*1450*/"my mum’s company",
+		/*1451*/"on the last day I met...",
+		/*1452*/"I filed documents",
+		/*1453*/"I helped...",
+		/*1454*/"I caught the bus",
+		/*1455*/"I started at...",
+		/*1456*/"finished at...",
+		/*1457*/"I did a variety of tasks",
+		/*1458*/"I went by public transport",
+		/*1459*/"I wore smart clothes",
+		/*1460*/"I put brochures on the shelves",
+		/*1461*/"I did photocopying",
+		/*1462*/"the customers were...",
+		/*1463*/"cheerful",
+		/*1464*/"(un)pleasant",
+		/*1465*/"(im)polite",
+		/*1466*/"the job was hard",
+		/*1467*/"lots of new skills",
+		/*1468*/"to work in a team",
+		/*1469*/"to use...",
+		/*1470*/"I didn’t learn anything new",
+		/*1471*/"why learn languages?",
+		/*1472*/"it increases your confidence",
+		/*1473*/"it stimulates the brain",
+		/*1474*/"it improves your job prospects",
+		/*1475*/"it opens your mind",
+		/*1476*/"it makes you appear more attractive",
+		/*1477*/"appreciate the cultural life of other",
+		/*1478*/"countries",
+		/*1479*/"meet lots of different people",
+		/*1480*/"get to know new places",
+		/*1481*/"find a job",
+		/*1482*/"discover new cultures",
+		/*1483*/"establish good relationships",
+		/*1484*/"make new friends",
+		/*1485*/"improve your first language",
+		/*1486*/"solve problems",
+		/*1487*/"work or study abroad",
+		/*1488*/"I need to know how to speak...",
+		/*1489*/"foreign languages",
+		/*1490*/"I (don’t) speak English fluently",
+		/*1491*/"I speak a bit of Russian",
+		/*1492*/"applying for a job",
+		/*1493*/"requires...",
+		/*1494*/"experience (not) needed",
+		/*1495*/"Dear Sir",
+		/*1496*/"I am writing to apply for the position of...",
+		/*1497*/"I am enclosing my CV",
+		/*1498*/"thank you for your kind attention",
+		/*1499*/"yours sincerely/faithfully",
+		/*1500*/"working in... appeals to me",
+		/*1501*/"I (don’t) have previous experience",
+		/*1502*/"I have studied / worked...",
+		/*1503*/"I have done a course in...",
+		/*1504*/"good communication",
+		/*1505*/"good problem-solving skills",
+		/*1506*/"good language skills",
 	],
 ];
 
+var perfect = 0;
 var correct = 0;
 var incorrect = 0;
 var random = 0;
@@ -6227,8 +6411,11 @@ function ask(){
 	document.getElementById("idontknow").innerHTML = "I don't know";
 	document.getElementById("dontknow").innerHTML = "";
 	document.getElementById("answer").value = "";
-	random = Math.floor(Math.random()*questions.length);
-	random2 = Math.floor(Math.random()*questions[random].length);
+	if(document.getElementById("subject").value == "all"){
+		random = Math.floor(Math.random()*questions.length);
+	}else{
+		random = document.getElementById("subject").value;
+	}random2 = Math.floor(Math.random()*questions[random].length);
 	document.getElementById("question").innerHTML = questions[random][random2];
 }
 ask();
@@ -6237,13 +6424,15 @@ function check(){
 	if(answers[random][random2].replace(/ /g,"").toLowerCase() == document.getElementById("answer").value.replace(/ /g,"").toLowerCase()){
 		if(!done){
 			correct++;
-			document.getElementById("correct").innerHTML = "correct: " + correct;
+			perfect++;
+			document.getElementById("correct").innerHTML = "Correct: " + correct;
+			document.getElementById("perfect").innerHTML = "Perfect: " + perfect;
 		}
-	ask();
+		ask();
 	}else if(!done){
 		done = true;
 		incorrect++;
-		document.getElementById("incorrect").innerHTML = "incorrect: " + incorrect;
+		document.getElementById("incorrect").innerHTML = "Incorrect: " + incorrect;
 	}
 }
 
@@ -6259,13 +6448,13 @@ document.getElementById("idontknow").onclick = function(){
 		cheat = true;
 		done = true;
 		incorrect++;
-		document.getElementById("incorrect").innerHTML = "incorrect: " + incorrect;
+		document.getElementById("incorrect").innerHTML = "Incorrect: " + incorrect;
 		document.getElementById("dontknow").innerHTML = answers[random][random2];
 	}else if(!cheat){
 		incorrect--;
-		document.getElementById("incorrect").innerHTML = "incorrect: " + incorrect;
+		document.getElementById("incorrect").innerHTML = "Incorrect: " + incorrect;
 		correct++;
-		document.getElementById("correct").innerHTML = "correct: " + correct;
+		document.getElementById("correct").innerHTML = "Correct: " + correct;
 		ask();
 	}
 };
@@ -6275,3 +6464,11 @@ window.addEventListener('keyup', function(ev){
 		check();
 	}
 });
+
+var previousSubject = "all";
+document.getElementById("subject").onclick = function(){
+	if(document.getElementById("subject").value != previousSubject){
+		previousSubject = document.getElementById("subject").value;
+		ask();
+	}
+};
