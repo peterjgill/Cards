@@ -13044,11 +13044,13 @@ if(localStorage.getItem("score") != null){
 	perfect = JSON.parse(localStorage.getItem("score"))[0];
 	correct = JSON.parse(localStorage.getItem("score"))[1];
 	incorrect = JSON.parse(localStorage.getItem("score"))[2];
+	document.getElementById("perfect").innerHTML = "Perfect: " + perfect;
+	document.getElementById("correct").innerHTML = "Correct: " + correct;
+	document.getElementById("incorrect").innerHTML = "Incorrect: " + incorrect;
+	if(!isNaN((correct + 2*perfect) / incorrect)){
+		document.getElementById("score").innerHTML = "Score: " + (correct + 2*perfect) / incorrect;
+	}
 }
-document.getElementById("perfect").innerHTML = "Perfect: " + perfect;
-document.getElementById("correct").innerHTML = "Correct: " + correct;
-document.getElementById("incorrect").innerHTML = "Incorrect: " + incorrect;
-document.getElementById("score").innerHTML = "Score: " + (correct + 2*perfect) / incorrect;
 
 var random = 0;
 var random2 = 0;
